@@ -4,9 +4,15 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { config } from './ormconfig';
+import { AlunosModule } from './alunos/alunos.module';
+import { UsuarioModule } from './usuario/usuario.module';
+import { AulaModule } from './aula/aula.module';
+import { InstrutorModule } from './instrutor/instrutor.module';
+import { PerfildeAcessoModule } from './perfilde-acesso/perfilde-acesso.module';
+import { PagamentoModule } from './pagamento/pagamento.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), UsersModule],
+  imports: [TypeOrmModule.forRoot(config), UsersModule, AlunosModule, UsuarioModule, AulaModule, InstrutorModule, PerfildeAcessoModule, PagamentoModule],
   controllers: [AppController],
   providers: [AppService],
 })
