@@ -41,5 +41,5 @@ export class Instrutor {
 
   @OneToOne(() => Usuario)
   @JoinColumn()
-  usuario: Usuario
+  usuario: Usuario // teste
 }
