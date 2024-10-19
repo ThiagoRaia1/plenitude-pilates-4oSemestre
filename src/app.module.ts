@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { config } from './ormconfig';
 import { AlunosModule } from './alunos/alunos.module';
@@ -12,7 +11,7 @@ import { PerfildeAcessoModule } from './perfilde-acesso/perfilde-acesso.module';
 import { PagamentoModule } from './pagamento/pagamento.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), UsersModule, AlunosModule, UsuarioModule, AulaModule, InstrutorModule, PerfildeAcessoModule, PagamentoModule],
+  imports: [TypeOrmModule.forRoot(config), AlunosModule, UsuarioModule, AulaModule, InstrutorModule, PerfildeAcessoModule, PagamentoModule],
   controllers: [AppController],
   providers: [AppService],
 })

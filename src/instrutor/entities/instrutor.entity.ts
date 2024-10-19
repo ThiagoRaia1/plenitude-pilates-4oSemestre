@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Usuario } from 'src/usuario/entities/usuario.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 
 @Entity()
 export class Instrutor {
@@ -12,32 +13,33 @@ export class Instrutor {
   cpf: string;
 
   @Column()
-  email: string;
-  
-  @Column()
-  funcao: string;
-  
-  @Column()
   telefone: string;
+
+  @Column()
+  ultimaAlteracao: string;
+  
+  @Column()
+  dataUltimaAlteracao: Date;
+  
+  @Column()
+  status: string;
+  
+  @Column()
+  numeroRua: number;
+  
+  @Column()
+  numeroCasa: number;
   
   @Column()
   cep: string;
   
   @Column()
-  cidade: string;
-  
-  @Column()
-  rua: string;
-  
-  @Column()
   bairro: string;
   
   @Column()
-  usuario: string;
-  
-  @Column()
-  senha: string; // deve usar hash
-  
-  @Column()
-  nivelDeAcesso: number;
+  cidade: string;
+
+  @OneToOne(() => Usuario)
+  @JoinColumn()
+  usuario: Usuario
 }
