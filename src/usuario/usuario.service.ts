@@ -21,7 +21,11 @@ export class UsuarioService {
     return this.usuarioRepository.find();
   }
 
-  findOne(id: number) {
+  async findOne(id: number) {
+    const user = await this.usuarioRepository.findOneBy({ id });
+    if (!user) {
+      throw new NotFoundException('Usuário não encontrado');
+    }
     return this.usuarioRepository.find({where: {id}});
     // return `This action returns a #${id} usuario`;
   }
