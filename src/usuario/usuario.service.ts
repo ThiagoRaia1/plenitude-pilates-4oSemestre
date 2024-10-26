@@ -22,7 +22,8 @@ export class UsuarioService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} usuario`;
+    return this.usuarioRepository.find({where: {id}});
+    // return `This action returns a #${id} usuario`;
   }
 
   async update(id: number, updateUserDto: UpdateUsuarioDto) {
