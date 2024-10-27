@@ -1,25 +1,67 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Aluno } from 'src/alunos/entities/aluno.entity'; 
 
-@Entity()   
-export class Aula {
-    @PrimaryGeneratedColumn()
-    id: number
+import { Instrutor } from 'src/instrutor/entities/instrutor.entity'; 
 
-    @Column()
-    data: Date
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinColumn } from 'typeorm'; 
 
-    @Column()
-    horaComeco: Date
+ 
 
-    @Column()
-    horaFim: Date // ver com o professor se data, horaComeco e horaFim podem ser feitos em um unico atributo
+@Entity()    
 
-    @Column()
-    qtdeVagas: number
+export class Aula { 
 
-    @Column()
-    qtdeVagasDisponiveis: number
+    @PrimaryGeneratedColumn() 
 
-    @Column()
-    status: string
+    id: number 
+
+ 
+
+    @Column() 
+
+    data: Date 
+
+ 
+
+    @Column() 
+
+    horaComeco: Date 
+
+ 
+
+    @Column() 
+
+    horaFim: Date // ver com o professor se data, horaComeco e horaFim podem ser feitos em um unico atributo 
+
+ 
+
+    @Column() 
+
+    qtdeVagas: number 
+
+ 
+
+    @Column() 
+
+    qtdeVagasDisponiveis: number 
+
+ 
+
+    @Column() 
+
+    status: string 
+
+ 
+
+    @ManyToOne(() => Instrutor, (instrutor) => instrutor.aulas) 
+
+    instrutor: Instrutor // teste 
+
+ 
+
+    @ManyToMany(() => Aluno) 
+
+    @JoinColumn() 
+
+    alunos: Aluno[] 
+
 }

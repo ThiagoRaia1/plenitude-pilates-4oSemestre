@@ -1,37 +1,91 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Aula } from 'src/aula/entities/aula.entity'; 
 
-@Entity()
-export class Aluno {
-    @PrimaryGeneratedColumn()
-    id: number
+import { Usuario } from 'src/usuario/entities/usuario.entity'; 
 
-    @Column()
-    cpf: string
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, ManyToMany } from 'typeorm'; 
 
-    @Column()
-    telefone: string
+ 
 
-    @Column()
-    status: string
+@Entity() 
 
-    @Column()
-    ultimaAlteracao: string
+export class Aluno { 
 
-    @Column()
-    dataUltimaAlteracao: Date
+    @PrimaryGeneratedColumn() 
 
-    @Column()
-    numeroRua: number;
-    
-    @Column()
-    numeroCasa: number;
-    
-    @Column()
-    cep: string;
-    
-    @Column()
-    bairro: string;
-    
-    @Column()
-    cidade: string;
+    id: number 
+
+ 
+
+    @Column() 
+
+    cpf: string 
+
+ 
+
+    @Column() 
+
+    telefone: string 
+
+ 
+
+    @Column() 
+
+    status: string 
+
+ 
+
+    @Column() 
+
+    ultimaAlteracao: string 
+
+ 
+
+    @Column() 
+
+    dataUltimaAlteracao: Date 
+
+ 
+
+    @Column() 
+
+    numeroRua: number; 
+
+     
+
+    @Column() 
+
+    numeroCasa: number; 
+
+     
+
+    @Column() 
+
+    cep: string; 
+
+     
+
+    @Column() 
+
+    bairro: string; 
+
+     
+
+    @Column() 
+
+    cidade: string; 
+
+ 
+
+    @ManyToOne(() => Usuario, (user) => user.instrutores) 
+
+    usuario: Usuario // teste 
+
+ 
+
+    @ManyToMany(() => Aula) 
+
+    @JoinColumn() 
+
+    aulas: Aula[] 
+
 }

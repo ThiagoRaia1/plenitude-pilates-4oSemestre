@@ -1,22 +1,51 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Usuario } from 'src/usuario/entities/usuario.entity'; 
 
-@Entity()
-export class Pagamento {
-    @PrimaryGeneratedColumn()
-    id: number
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'; 
 
-    @Column()
-    ultimaAlteracao: string
+ 
 
-    @Column()
-    dataUltimaDeclaracao: Date
+@Entity() 
 
-    @Column()
-    status: string
+export class Pagamento { 
 
-    @Column()
-    formaDePagamento: string
+    @PrimaryGeneratedColumn() 
 
-    @Column()
-    data: Date
+    id: number 
+
+ 
+
+    @Column() 
+
+    ultimaAlteracao: string 
+
+ 
+
+    @Column() 
+
+    dataUltimaDeclaracao: Date 
+
+ 
+
+    @Column() 
+
+    status: string 
+
+ 
+
+    @Column() 
+
+    formaDePagamento: string 
+
+ 
+
+    @Column() 
+
+    data: Date 
+
+ 
+
+    @ManyToOne(() => Usuario, (user) => user.pagamentos) 
+
+    usuario: Usuario // teste 
+
 }

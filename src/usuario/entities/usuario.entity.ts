@@ -1,27 +1,69 @@
-import { Instrutor } from 'src/instrutor/entities/instrutor.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import { userInfo } from 'os'; 
 
-@Entity()
-export class Usuario {
-    @PrimaryGeneratedColumn()
-    id: number
+import { Aluno } from 'src/alunos/entities/aluno.entity'; 
 
-    @Column()
-    login: string // email
+import { Instrutor } from 'src/instrutor/entities/instrutor.entity'; 
 
-    @Column()
-    senha: string // deve usar hash
+import { Pagamento } from 'src/pagamento/entities/pagamento.entity'; 
 
-    @Column()
-    nome: string
-    
-    @Column()
-    status: string
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, OneToMany } from 'typeorm'; 
 
-    @Column()
-    nivelDeAcesso: number
-    
-    @OneToOne(() => Instrutor)
-    @JoinColumn()
-    instrutor: Instrutor // teste
+ 
+
+@Entity() 
+
+export class Usuario { 
+
+    @PrimaryGeneratedColumn() 
+
+    id: number 
+
+ 
+
+    @Column() 
+
+    login: string // email 
+
+ 
+
+    @Column() 
+
+    senha: string // deve usar hash 
+
+ 
+
+    @Column() 
+
+    nome: string 
+
+     
+
+    @Column() 
+
+    status: string 
+
+ 
+
+    @Column() 
+
+    nivelDeAcesso: number 
+
+     
+
+    @OneToMany(() => Instrutor, (instrutor) => instrutor.usuario) // perguntar 
+
+    instrutores: Instrutor[] // teste 
+
+ 
+
+    @OneToMany(() => Pagamento, (pagamento) => pagamento.usuario) // perguntar 
+
+    pagamentos: Pagamento[] // teste 
+
+ 
+
+    @OneToMany(() => Aluno, (aluno) => aluno.usuario) // perguntar 
+
+    alunos: Aluno[] // teste 
+
 }
