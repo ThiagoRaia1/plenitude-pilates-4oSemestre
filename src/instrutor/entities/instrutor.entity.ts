@@ -1,43 +1,95 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Aula } from 'src/aula/entities/aula.entity'; 
 
-@Entity()
-export class Instrutor {
-  @PrimaryGeneratedColumn()
-  id: number;
+import { Usuario } from 'src/usuario/entities/usuario.entity'; 
 
-  @Column()
-  nome: string;
-  
-  @Column()
-  cpf: string;
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne, OneToMany } from 'typeorm'; 
 
-  @Column()
-  email: string;
-  
-  @Column()
-  funcao: string;
-  
-  @Column()
-  telefone: string;
-  
-  @Column()
-  cep: string;
-  
-  @Column()
-  cidade: string;
-  
-  @Column()
-  rua: string;
-  
-  @Column()
-  bairro: string;
-  
-  @Column()
-  usuario: string;
-  
-  @Column()
-  senha: string; // deve usar hash
-  
-  @Column()
-  nivelDeAcesso: number;
+ 
+
+@Entity() 
+
+export class Instrutor { 
+
+  @PrimaryGeneratedColumn() 
+
+  id: number; 
+
+ 
+
+  @Column() 
+
+  nome: string; 
+
+   
+
+  @Column() 
+
+  cpf: string; 
+
+ 
+
+  @Column() 
+
+  telefone: string; 
+
+ 
+
+  @Column() 
+
+  ultimaAlteracao: string; 
+
+   
+
+  @Column() 
+
+  dataUltimaAlteracao: Date; 
+
+   
+
+  @Column() 
+
+  status: string; 
+
+   
+
+  @Column() 
+
+  numeroRua: number; 
+
+   
+
+  @Column() 
+
+  numeroCasa: number; 
+
+   
+
+  @Column() 
+
+  cep: string; 
+
+   
+
+  @Column() 
+
+  bairro: string; 
+
+   
+
+  @Column() 
+
+  cidade: string; 
+
+ 
+
+  @ManyToOne(() => Usuario, (user) => user.instrutores) 
+
+  usuario: Usuario // teste 
+
+ 
+
+  @OneToMany(() => Aula, (aula) => aula.instrutor) // perguntar 
+
+  aulas: Aula[] // teste 
+
 }
