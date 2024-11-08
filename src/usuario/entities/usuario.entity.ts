@@ -1,5 +1,3 @@
-import { userInfo } from 'os'; 
-
 import { Aluno } from 'src/alunos/entities/aluno.entity'; 
 
 import { Instrutor } from 'src/instrutor/entities/instrutor.entity'; 
