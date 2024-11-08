@@ -33,7 +33,7 @@ export class PagamentoService {
   async update(id: number, updatePagamentoDto: UpdatePagamentoDto) {
     const pagamento = await this.pagamentoRepository.findOneBy({ id });
     if (!pagamento) {
-      throw new NotFoundException('Usuário não encontrado');
+      throw new NotFoundException('Pagamento não encontrado');
     }
     this.pagamentoRepository.merge(pagamento, updatePagamentoDto);
     return this.pagamentoRepository.save(pagamento);
