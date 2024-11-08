@@ -2,13 +2,16 @@ import { Aluno } from 'src/alunos/entities/aluno.entity';
 
 import { Aula } from 'src/aula/entities/aula.entity'; 
 
-import { Entity, ManyToOne, JoinColumn } from 'typeorm'; 
+import { Entity, ManyToOne, JoinColumn, PrimaryColumn } from 'typeorm'; 
 
  
 
 @Entity() 
 
 export class Alunoaula { 
+
+    @PrimaryColumn()
+    id: number
 
     @ManyToOne(() => Aluno, (aluno) => aluno.aulas) 
 
