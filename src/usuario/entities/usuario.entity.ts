@@ -1,7 +1,7 @@
 import { Aluno } from 'src/alunos/entities/aluno.entity'; 
 import { Instrutor } from 'src/instrutor/entities/instrutor.entity'; 
 import { Pagamento } from 'src/pagamento/entities/pagamento.entity'; 
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, OneToMany } from 'typeorm'; 
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm'; 
 
 @Entity() 
 export class Usuario { 
