@@ -3,7 +3,7 @@ export class CreateAulaDto {
 
     horaComeco: Date
 
-    horaFim: Date // ver com o professor se data, horaComeco e horaFim podem ser feitos em um unico atributo
+    horaFim: Date // ver com o professor se data, horaComeco/horaFim podem ser feitos em um unico atributo
 
     qtdeVagas: number
 
