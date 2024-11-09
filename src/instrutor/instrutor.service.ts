@@ -1,26 +1,49 @@
 import { Injectable } from '@nestjs/common';
 import { CreateInstrutorDto } from './dto/create-instrutor.dto';
 import { UpdateInstrutorDto } from './dto/update-instrutor.dto';
+import { Instrutor } from './entities/instrutor.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class InstrutorService {
+  constructor(
+    @InjectRepository(Instrutor)
+    private instrutorRepository: Repository<Instrutor>,
+  ) {}
+
   create(createInstrutorDto: CreateInstrutorDto) {
-    return 'This action adds a new instrutor';
+    const instrutor = this.instrutorRepository.create(createInstrutorDto)
+    return this.instrutorRepository.save(instrutor)
   }
 
   findAll() {
-    return `This action returns all instrutor`;
+    return this.instrutorRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} instrutor`;
+  async findOne(id: number) {
+    const instrutor = await this.instrutorRepository.findOneBy({ id });
+    if (!instrutor) {
+      throw new NotFoundException('Instrutor não encontrado');
+    }
+    return this.instrutorRepository.find({where: {id}});
   }
 
-  update(id: number, updateInstrutorDto: UpdateInstrutorDto) {
-    return `This action updates a #${id} instrutor`;
+  async update(id: number, updateInstrutorDto: UpdateInstrutorDto) {
+    const instrutor = await this.instrutorRepository.findOneBy({ id });
+    if (!instrutor) {
+      throw new NotFoundException('instrutor não encontrado');
+    }
+    this.instrutorRepository.merge(instrutor, updateInstrutorDto);
+    return this.instrutorRepository.save(instrutor);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} instrutor`;
+  async remove(id: number) {
+    const instrutor = await this.instrutorRepository.findOneBy({ id });
+    if (!instrutor) {
+      throw new NotFoundException('instrutor não encontrado');
+    }
+    return this.instrutorRepository.remove(instrutor);
   }
 }
