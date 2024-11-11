@@ -1,91 +1,46 @@
 import { Aula } from 'src/aula/entities/aula.entity'; 
-
 import { Usuario } from 'src/usuario/entities/usuario.entity'; 
-
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, ManyToMany } from 'typeorm'; 
 
- 
-
-@Entity() 
-
-export class Aluno { 
-
+@Entity()
+export class Aluno {
     @PrimaryGeneratedColumn() 
-
     id: number 
 
- 
+    @Column() 
+    cpf: string
 
     @Column() 
+    telefone: string
 
-    cpf: string 
+    @Column()
+    status: string
 
- 
+    @Column()
+    ultimaAlteracao: string
 
-    @Column() 
+    @Column()
+    dataUltimaAlteracao: Date
 
-    telefone: string 
+    @Column()
+    numeroRua: number;
 
- 
+    @Column()
+    numeroCasa: number;
 
-    @Column() 
+    @Column()
+    cep: string;     
 
-    status: string 
+    @Column()
+    bairro: string;     
 
- 
-
-    @Column() 
-
-    ultimaAlteracao: string 
-
- 
-
-    @Column() 
-
-    dataUltimaAlteracao: Date 
-
- 
-
-    @Column() 
-
-    numeroRua: number; 
-
-     
-
-    @Column() 
-
-    numeroCasa: number; 
-
-     
-
-    @Column() 
-
-    cep: string; 
-
-     
-
-    @Column() 
-
-    bairro: string; 
-
-     
-
-    @Column() 
-
+    @Column()
     cidade: string; 
 
- 
-
-    @ManyToOne(() => Usuario, (user) => user.instrutores) 
-
+    @ManyToOne(() => Usuario, (user) => user.instrutores)
     usuario: Usuario // teste 
 
- 
-
-    @ManyToMany(() => Aula) 
-
-    @JoinColumn() 
-
+    @ManyToMany(() => Aula)
+    @JoinColumn()
     aulas: Aula[] 
-
 }

@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import cors from 'cors'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -11,7 +10,7 @@ async function bootstrap() {
     forbidNonWhitelisted: true, // retorna erro se tiver campos que não estão no DTO
   }));
   app.enableCors();
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
   
 }
 
