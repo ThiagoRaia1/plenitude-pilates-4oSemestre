@@ -21,6 +21,10 @@ export class UsuarioService {
     return this.usuarioRepository.find();
   }
 
+  findOneByEmail(login: string) {
+    return this.usuarioRepository.findOneBy({ login });
+  }
+
   async findOne(id: number) {
     const user = await this.usuarioRepository.findOneBy({ id });
     if (!user) {
