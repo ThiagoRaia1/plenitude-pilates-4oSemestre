@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { Usuario } from './entities/usuario.entity';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsuarioService {
@@ -12,9 +13,10 @@ export class UsuarioService {
     private usuarioRepository: Repository<Usuario>,
   ) {}
 
-  create(createUsuarioDto: CreateUsuarioDto) {
-    const usuario = this.usuarioRepository.create(createUsuarioDto)
-    return this.usuarioRepository.save(usuario)
+  async create(createUsuarioDto: CreateUsuarioDto) {
+    const senha = await bcrypt.hash(createUsuarioDto.senha, 10); // Usamos o bcrypt para a hash da senha
+    const usuario = this.usuarioRepository.create({ ...createUsuarioDto, senha }); // Passamos a senha criptografada e o restante dos dados
+    return this.usuarioRepository.save(usuario);
   }
 
   findAll() {
@@ -25,29 +27,29 @@ export class UsuarioService {
     return this.usuarioRepository.findOneBy({ login });
   }
 
+
   async findOne(id: number) {
-    const user = await this.usuarioRepository.findOneBy({ id });
-    if (!user) {
+    const usuario = await this.usuarioRepository.findOneBy({ id });
+    if (!usuario) {
       throw new NotFoundException('Usuário não encontrado');
     }
     return this.usuarioRepository.find({where: {id}});
-    // return `This action returns a #${id} usuario`;
   }
 
-  async update(id: number, updateUserDto: UpdateUsuarioDto) {
-    const user = await this.usuarioRepository.findOneBy({ id });
-    if (!user) {
+  async update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
+    const usuario = await this.usuarioRepository.findOneBy({ id });
+    if (!usuario) {
       throw new NotFoundException('Usuário não encontrado');
     }
-    this.usuarioRepository.merge(user, updateUserDto);
-    return this.usuarioRepository.save(user);
+    this.usuarioRepository.merge(usuario, updateUsuarioDto);
+    return this.usuarioRepository.save(usuario);
   }
 
   async remove(id: number) {
-    const user = await this.usuarioRepository.findOneBy({ id });
-    if (!user) {
+    const usuario = await this.usuarioRepository.findOneBy({ id });
+    if (!usuario) {
       throw new NotFoundException('Usuário não encontrado');
     }
-    return this.usuarioRepository.remove(user);
+    return this.usuarioRepository.remove(usuario);
   }
 }

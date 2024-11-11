@@ -1,12 +1,16 @@
 import { Instrutor } from "src/instrutor/entities/instrutor.entity"
-import { IsEmail, IsNotEmpty } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsStrongPassword } from 'class-validator';
 
 export class CreateUsuarioDto {
     @IsEmail({}, { message: 'E-mail inválido' })
     login: string // email
 
     @IsNotEmpty({ message: 'Senha é obrigatória' })
-    senha: string // deve usar hash
+    @IsStrongPassword(
+        { minLength: 8, minNumbers: 1, minLowercase: 1, minSymbols: 1 },
+        { message: 'Senha fraca' },
+    )
+    senha: string;
 
     @IsNotEmpty({ message: 'Nome é obrigatório' })
     nome: string
