@@ -11,9 +11,21 @@ import { PerfildeAcessoModule } from './perfilde-acesso/perfilde-acesso.module';
 import { PagamentoModule } from './pagamento/pagamento.module';
 import { AlunoaulaModule } from './alunoaula/alunoaula.module';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), AlunosModule, UsuarioModule, AulaModule, InstrutorModule, PerfildeAcessoModule, PagamentoModule, AlunoaulaModule, AuthModule],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    TypeOrmModule.forRoot(config), 
+    AlunosModule, 
+    UsuarioModule, 
+    AulaModule, 
+    InstrutorModule, 
+    PerfildeAcessoModule, 
+    PagamentoModule, 
+    AlunoaulaModule, 
+    AuthModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
