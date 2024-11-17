@@ -12,7 +12,16 @@ import { PagamentoModule } from './pagamento/pagamento.module';
 import { AlunoaulaModule } from './alunoaula/alunoaula.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), AlunosModule, UsuarioModule, AulaModule, InstrutorModule, PerfildeAcessoModule, PagamentoModule, AlunoaulaModule],
+  imports: [
+    TypeOrmModule.forRoot(config), 
+    AlunosModule, 
+    UsuarioModule, 
+    AulaModule, 
+    InstrutorModule, 
+    PerfildeAcessoModule, 
+    PagamentoModule, 
+    AlunoaulaModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

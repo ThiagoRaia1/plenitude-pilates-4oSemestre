@@ -7,7 +7,6 @@ import { Aluno } from './entities/aluno.entity';
 
 @Injectable()
 export class AlunosService {
-
   constructor(
     @InjectRepository(Aluno)
     private alunoRepository: Repository<Aluno>,
