@@ -16,6 +16,9 @@ export class Aluno {
     @Column() 
     cpf: string 
 
+    @Column()
+    rua: string
+
     @Column() 
     telefone: string 
 

@@ -1,4 +1,4 @@
-ormconfig.ts
+/src/ormconfig.ts
 
 # compiled output
 /dist

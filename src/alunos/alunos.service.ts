@@ -21,12 +21,13 @@ export class AlunosService {
     return this.alunoRepository.find();
   }
 
-  async findOne(id: number) {
-    const aluno = await this.alunoRepository.findOneBy({ id });
+  async findOne(cpf: string) {
+    const aluno = await this.alunoRepository.findOneBy({ cpf }); // Busca apenas um registro
     if (!aluno) {
-      throw new NotFoundException('Aluno não encontrada');
+      throw new NotFoundException('Aluno não encontrado');
     }
-    return this.alunoRepository.find({where: {id}});
+    console.log(aluno)
+    return aluno; // Retorna o aluno encontrado
   }
 
   async update(id: number, updateAlunoDto: UpdateAlunoDto) {
