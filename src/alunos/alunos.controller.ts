@@ -17,9 +17,9 @@ export class AlunosController {
     return this.alunosService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.alunosService.findOne(+id);
+  @Get(':cpf')
+  findOne(@Param('cpf') cpf: string) {
+    return this.alunosService.findOne(cpf);
   }
 
   @Patch(':id')
