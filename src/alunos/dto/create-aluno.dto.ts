@@ -3,19 +3,28 @@ import { Aula } from "src/aula/entities/aula.entity"
 import { Usuario } from "src/usuario/entities/usuario.entity"
 
 export class CreateAlunoDto {
+    @IsNotEmpty({ message: 'Nome é obrigatório' })
+    nome: string
+    
+    @IsNotEmpty({ message: 'Data de nascimento é obrigatória' })
+    dataNascimento: Date
+
     @IsNotEmpty({ message: 'CPF é obrigatório' })
     cpf: string
+  
+    @IsNotEmpty({ message: 'Rua é obrigatória' })
+    rua: string
 
     @IsNotEmpty({ message: 'Telefone é obrigatório' })
     telefone: string
 
-    @IsNotEmpty({ message: 'Status é obrigatório' })
+    @IsNotEmpty({ message: 'Status é obrigatória' })
     status: string
 
-    @IsNotEmpty({ message: 'O usuário que fez a ultima alteração é obrigatório' })
+    @IsNotEmpty({ message: 'O usuário que realizou a ultima alteração é obrigatório' })
     ultimaAlteracao: string
 
-    @IsNotEmpty({ message: 'A data que o ultimo usuário fez a alteração é obrigatória' })
+    @IsNotEmpty({ message: 'A data que foi realizada a ultima alteração é obrigatória' })
     dataUltimaAlteracao: Date
 
     @IsNotEmpty({ message: 'Numero da rua é obrigatório' })
@@ -30,7 +39,7 @@ export class CreateAlunoDto {
     @IsNotEmpty({ message: 'Bairro é obrigatório' })
     bairro: string;
     
-    @IsNotEmpty({ message: 'Cidade é obrigatório' })
+    @IsNotEmpty({ message: 'Cidade é obrigatória' })
     cidade: string;
 
     usuario: Usuario

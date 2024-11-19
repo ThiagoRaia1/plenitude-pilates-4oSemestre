@@ -10,7 +10,7 @@ async function bootstrap() {
     forbidNonWhitelisted: true, // retorna erro se tiver campos que não estão no DTO
   }));
   app.enableCors();
-  await app.listen(process.env.PORT || 3000);
+  await app.listen(process.env.PORT || 3001);
   
 }
 

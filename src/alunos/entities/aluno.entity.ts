@@ -7,40 +7,49 @@ export class Aluno {
     @PrimaryGeneratedColumn() 
     id: number 
 
+    @Column()
+    nome: string
+
+    @Column()
+    dataNascimento: Date
+
     @Column() 
-    cpf: string
+    cpf: string 
+
+    @Column()
+    rua: string
 
     @Column() 
-    telefone: string
+    telefone: string 
 
-    @Column()
-    status: string
+    @Column() 
+    status: string 
 
-    @Column()
-    ultimaAlteracao: string
+    @Column() 
+    ultimaAlteracao: string 
 
-    @Column()
-    dataUltimaAlteracao: Date
+    @Column() 
+    dataUltimaAlteracao: Date 
 
-    @Column()
-    numeroRua: number;
+    @Column() 
+    numeroRua: number; 
 
-    @Column()
-    numeroCasa: number;
+    @Column() 
+    numeroCasa: number; 
 
-    @Column()
-    cep: string;     
+    @Column() 
+    cep: string; 
 
-    @Column()
-    bairro: string;     
+    @Column() 
+    bairro: string; 
 
-    @Column()
+    @Column() 
     cidade: string; 
 
-    @ManyToOne(() => Usuario, (user) => user.instrutores)
+    @ManyToOne(() => Usuario, (user) => user.instrutores) 
     usuario: Usuario // teste 
 
-    @ManyToMany(() => Aula)
-    @JoinColumn()
+    @ManyToMany(() => Aula) 
+    @JoinColumn() 
     aulas: Aula[] 
 }
