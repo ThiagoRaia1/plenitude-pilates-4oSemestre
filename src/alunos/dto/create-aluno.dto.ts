@@ -1,4 +1,6 @@
 import { IsNotEmpty } from "class-validator"
+import { Aula } from "src/aula/entities/aula.entity"
+import { Usuario } from "src/usuario/entities/usuario.entity"
 
 export class CreateAlunoDto {
     @IsNotEmpty({ message: 'Nome é obrigatório' })
@@ -39,4 +41,8 @@ export class CreateAlunoDto {
     
     @IsNotEmpty({ message: 'Cidade é obrigatória' })
     cidade: string;
+
+    usuario: Usuario
+
+    aulas: Aula[]
 }
