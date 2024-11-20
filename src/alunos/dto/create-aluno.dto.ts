@@ -42,6 +42,7 @@ export class CreateAlunoDto {
     @IsNotEmpty({ message: 'Cidade é obrigatória' })
     cidade: string;
 
+    @IsNotEmpty({ message: 'Usuario é obrigatória' })
     usuario: Usuario
 
     aulas: Aula[]
