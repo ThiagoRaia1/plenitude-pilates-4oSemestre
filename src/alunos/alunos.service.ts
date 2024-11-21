@@ -30,8 +30,8 @@ export class AlunosService {
     return aluno; // Retorna o aluno encontrado
   }
 
-  async update(id: number, updateAlunoDto: UpdateAlunoDto) {
-    const aluno = await this.alunoRepository.findOneBy({ id });
+  async update(cpf: string, updateAlunoDto: UpdateAlunoDto) {
+    const aluno = await this.alunoRepository.findOneBy({ cpf });
     if (!aluno) {
       throw new NotFoundException('Aluno não encontrada');
     }

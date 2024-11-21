@@ -22,9 +22,9 @@ export class AlunosController {
     return this.alunosService.findOne(cpf);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAlunoDto: UpdateAlunoDto) {
-    return this.alunosService.update(+id, updateAlunoDto);
+  @Patch(':cpf')
+  update(@Param('cpf') cpf: string, @Body() updateAlunoDto: UpdateAlunoDto) {
+    return this.alunosService.update(cpf, updateAlunoDto);
   }
 
   @Delete(':id')
