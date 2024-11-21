@@ -10,20 +10,26 @@ export class Instrutor {
   @Column() 
   nome: string; 
 
-  @Column() 
-  cpf: string; 
+  @Column()
+  dataNascimento: Date
 
   @Column() 
-  telefone: string; 
+  cpf: string;
+
+  @Column()
+  rua: string
+
+  @Column() 
+  telefone: string;
+
+  @Column() 
+  status: string; 
 
   @Column() 
   ultimaAlteracao: string; 
 
   @Column() 
   dataUltimaAlteracao: Date; 
-
-  @Column() 
-  status: string; 
 
   @Column() 
   numeroRua: number; 

@@ -22,16 +22,17 @@ export class InstrutorService {
     return this.instrutorRepository.find();
   }
 
-  async findOne(id: number) {
-    const instrutor = await this.instrutorRepository.findOneBy({ id });
+  async findOne(cpf: string) {
+    const instrutor = await this.instrutorRepository.findOneBy({ cpf });
     if (!instrutor) {
       throw new NotFoundException('Instrutor não encontrado');
     }
-    return this.instrutorRepository.find({where: {id}});
+    console.log(instrutor)
+    return instrutor;
   }
 
-  async update(id: number, updateInstrutorDto: UpdateInstrutorDto) {
-    const instrutor = await this.instrutorRepository.findOneBy({ id });
+  async update(cpf: string, updateInstrutorDto: UpdateInstrutorDto) {
+    const instrutor = await this.instrutorRepository.findOneBy({ cpf });
     if (!instrutor) {
       throw new NotFoundException('instrutor não encontrado');
     }

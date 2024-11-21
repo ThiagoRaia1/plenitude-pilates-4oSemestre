@@ -17,14 +17,14 @@ export class InstrutorController {
     return this.instrutorService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.instrutorService.findOne(+id);
+  @Get(':cpf')
+  findOne(@Param('cpf') cpf: string) {
+    return this.instrutorService.findOne(cpf);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateInstrutorDto: UpdateInstrutorDto) {
-    return this.instrutorService.update(+id, updateInstrutorDto);
+  @Patch(':cpf')
+  update(@Param('cpf') cpf: string, @Body() updateInstrutorDto: UpdateInstrutorDto) {
+    return this.instrutorService.update(cpf, updateInstrutorDto);
   }
 
   @Delete(':id')

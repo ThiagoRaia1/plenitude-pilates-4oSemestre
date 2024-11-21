@@ -3,36 +3,42 @@ import { Usuario } from "src/usuario/entities/usuario.entity";
 
 export class CreateInstrutorDto {
     @IsNotEmpty({ message: 'Nome é obrigatório' })
-    nome: string;
-  
+    nome: string
+    
+    @IsNotEmpty({ message: 'Data de nascimento é obrigatória' })
+    dataNascimento: Date
+
     @IsNotEmpty({ message: 'CPF é obrigatório' })
-    cpf: string;
+    cpf: string
+  
+    @IsNotEmpty({ message: 'Rua é obrigatória' })
+    rua: string
 
     @IsNotEmpty({ message: 'Telefone é obrigatório' })
-    telefone: string;
+    telefone: string
 
-    @IsNotEmpty({ message: 'O usuário que fez a ultima alteração é obrigatório' })
-    ultimaAlteracao: string;
+    @IsNotEmpty({ message: 'Status é obrigatória' })
+    status: string
 
-    @IsNotEmpty({ message: 'A data da ultima alteração é obrigatória' })
-    dataUltimaAlteracao: Date;
+    @IsNotEmpty({ message: 'O usuário que realizou a ultima alteração é obrigatório' })
+    ultimaAlteracao: string
 
-    @IsNotEmpty({ message: 'Status é obrigatório' })
-    status: string;
+    @IsNotEmpty({ message: 'A data que foi realizada a ultima alteração é obrigatória' })
+    dataUltimaAlteracao: Date
 
     @IsNotEmpty({ message: 'Numero da rua é obrigatório' })
     numeroRua: number;
-
+    
     @IsNotEmpty({ message: 'Numero da casa é obrigatório' })
     numeroCasa: number;
-
+    
     @IsNotEmpty({ message: 'CEP é obrigatório' })
     cep: string;
-
+    
     @IsNotEmpty({ message: 'Bairro é obrigatório' })
     bairro: string;
-
-    @IsNotEmpty({ message: 'Cidade é obrigatório' })
+    
+    @IsNotEmpty({ message: 'Cidade é obrigatória' })
     cidade: string;
 
     @IsNotEmpty({ message: 'O nome de usuário que fez o cadastro é obrigatório' })
