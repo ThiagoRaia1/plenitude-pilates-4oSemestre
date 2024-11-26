@@ -1,6 +1,6 @@
 import { Aluno } from 'src/alunos/entities/aluno.entity'; 
 import { Aula } from 'src/aula/entities/aula.entity'; 
-import { Entity, ManyToOne, JoinColumn, PrimaryGeneratedColumn } from 'typeorm'; 
+import { Entity, ManyToOne, JoinColumn, PrimaryGeneratedColumn, Column } from 'typeorm'; 
 
 @Entity() 
 export class Alunoaula { 
@@ -14,4 +14,7 @@ export class Alunoaula {
     @ManyToOne(() => Aula, (aula) => aula.alunos) 
     @JoinColumn({ name: 'aula' }) 
     aula: Aula; 
+
+    @Column()
+    tipoDeAula: string
 }

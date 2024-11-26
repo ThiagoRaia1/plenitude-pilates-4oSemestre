@@ -8,4 +8,7 @@ export class CreateAlunoaulaDto {
     
     @IsNotEmpty({ message: 'Aula é obrigatório' })
     aula: Aula
+    
+    @IsNotEmpty({ message: 'Tipo de aula é obrigatório' })
+    tipoDeAula: string
 }
