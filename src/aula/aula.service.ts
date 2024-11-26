@@ -15,6 +15,7 @@ export class AulaService {
 
   create(createAulaDto: CreateAulaDto) {
     const aula = this.aulaRepository.create(createAulaDto)
+    console.log(aula)
     return this.aulaRepository.save(aula)
   }
 
@@ -22,12 +23,23 @@ export class AulaService {
     return this.aulaRepository.find();
   }
 
-  async findOne(id: number) {
-    const aula = await this.aulaRepository.findOneBy({ id });
+  async findOne(horaComeco: Date) {
+    // console.log("Comeco")
+    // console.log("data: "+horaComeco)
+    // console.log("Tipo de horaComeco:", typeof horaComeco);
+    if (!(horaComeco instanceof Date)) {
+      horaComeco = new Date(horaComeco); // Converte string ou número para Date
+    }
+    // console.log("Tipo de horaComeco:", typeof horaComeco);
+    const aula = await this.aulaRepository.findOneBy({ horaComeco });
+    // console.log("Antes do if")
     if (!aula) {
+      // console.log("Dentro do if")
       throw new NotFoundException('Aula não encontrada');
     }
-    return this.aulaRepository.find({where: {id}});
+    // console.log("Depois do if")
+    // console.log(aula.instrutor)
+    return aula;
   }
 
   async update(id: number, updateAulaDto: UpdateAulaDto) {

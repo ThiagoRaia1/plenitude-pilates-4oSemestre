@@ -1,4 +1,5 @@
 import { IsNotEmpty } from "class-validator"
+import { Instrutor } from "src/instrutor/entities/instrutor.entity"
 
 export class CreateAulaDto {
     @IsNotEmpty({ message: 'Data é obrigatória' })
@@ -18,4 +19,7 @@ export class CreateAulaDto {
 
     @IsNotEmpty({ message: 'Status é obrigatório' })
     status: string
+
+    @IsNotEmpty({ message: 'O instrutor que fará a aula é obrigatório' })
+    instrutor: Instrutor // teste
 }

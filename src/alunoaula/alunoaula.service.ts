@@ -1,19 +1,33 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateAlunoaulaDto } from './dto/create-alunoaula.dto';
 import { UpdateAlunoaulaDto } from './dto/update-alunoaula.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Alunoaula } from './entities/alunoaula.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AlunoaulaService {
-  create(createAlunoaulaDto: CreateAlunoaulaDto) {
-    return 'This action adds a new alunoaula';
+  constructor(
+    @InjectRepository(Alunoaula)
+    private alunoAulaRepository: Repository<Alunoaula>,
+  ) {}
+
+  create(createAlunoAulaDto: CreateAlunoaulaDto) {
+    const alunoAula = this.alunoAulaRepository.create(createAlunoAulaDto)
+    console.log(alunoAula)
+    return this.alunoAulaRepository.save(alunoAula)
   }
 
   findAll() {
-    return `This action returns all alunoaula`;
+    return this.alunoAulaRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} alunoaula`;
+  async findOne(id: number) {
+    const alunoAula = await this.alunoAulaRepository.findOneBy({ id });
+    if (!alunoAula) {
+      throw new NotFoundException('Aula não encontrada');
+    }
+    return this.alunoAulaRepository.find({where: {id}});
   }
 
   update(id: number, updateAlunoaulaDto: UpdateAlunoaulaDto) {

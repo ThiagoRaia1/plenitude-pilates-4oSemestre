@@ -17,9 +17,10 @@ export class AulaController {
     return this.aulaService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.aulaService.findOne(+id);
+  @Get(':horaComeco')
+  findOne(@Param('horaComeco') horaComeco: Date) {
+    // console.log("Dentro do controller")
+    return this.aulaService.findOne(horaComeco);
   }
 
   @Patch(':id')

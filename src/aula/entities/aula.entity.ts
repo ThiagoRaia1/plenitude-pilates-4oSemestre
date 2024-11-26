@@ -10,7 +10,7 @@ export class Aula {
     @Column() 
     data: Date 
 
-    @Column() 
+    @Column({ type: 'datetime' }) 
     horaComeco: Date 
 
     @Column() 
@@ -25,7 +25,7 @@ export class Aula {
     @Column() 
     status: string 
 
-    @ManyToOne(() => Instrutor, (instrutor) => instrutor.aulas) 
+    @ManyToOne(() => Instrutor, (instrutor) => instrutor.aulas, { eager: true }) 
     instrutor: Instrutor // teste 
 
     @ManyToMany(() => Aluno) 
