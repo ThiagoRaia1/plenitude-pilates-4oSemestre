@@ -48,6 +48,7 @@ export class AulaService {
       throw new NotFoundException('Aula não encontrada');
     }
     this.aulaRepository.merge(aula, updateAulaDto);
+    console.log("Atualizado")
     return this.aulaRepository.save(aula);
   }
 
