@@ -30,6 +30,17 @@ export class AlunoaulaService {
     return this.alunoAulaRepository.find({where: {id}});
   }
 
+  async verificaAlunoAula(aluno: number, aula: number): Promise<boolean> {
+    const count = await this.alunoAulaRepository
+      .createQueryBuilder('alunoaula')
+      .where('alunoaula.aluno = :aluno', { aluno })
+      .andWhere('alunoaula.aula = :aula', { aula })
+      .getCount();
+
+    // Retorna true se count > 0, ou false caso contrário
+    return count > 0;
+  }
+
   update(id: number, updateAlunoaulaDto: UpdateAlunoaulaDto) {
     return `This action updates a #${id} alunoaula`;
   }

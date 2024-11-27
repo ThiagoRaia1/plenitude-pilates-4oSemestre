@@ -22,6 +22,12 @@ export class AlunoaulaController {
     return this.alunoaulaService.findOne(+id);
   }
 
+  @Post('verifica')
+  async verifica(@Body() body: { aluno: number; aula: number }): Promise<{ existe: boolean }> {
+    const existe = await this.alunoaulaService.verificaAlunoAula(body.aluno, body.aula);
+    return { existe };
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAlunoaulaDto: UpdateAlunoaulaDto) {
     return this.alunoaulaService.update(+id, updateAlunoaulaDto);
