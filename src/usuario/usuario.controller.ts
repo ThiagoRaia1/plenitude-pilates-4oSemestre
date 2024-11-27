@@ -1,10 +1,12 @@
-import { Controller, Get, Post, Body, Param, Delete, Put, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, UseGuards, UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
+import { Usuario } from './entities/usuario.entity';
 
 @Controller('usuario')
+@UseInterceptors(ClassSerializerInterceptor) // Aplica o interceptor para serialização
 export class UsuarioController {
   constructor(private readonly usuarioService: UsuarioService) {}
 
@@ -21,7 +23,7 @@ export class UsuarioController {
 
   @Get(':id')
   @UseGuards(AuthGuard)
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string): Promise<Usuario> {
     return this.usuarioService.findOne(+id);
   }
 

@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { Aluno } from 'src/alunos/entities/aluno.entity'; 
 import { Instrutor } from 'src/instrutor/entities/instrutor.entity'; 
 import { Pagamento } from 'src/pagamento/entities/pagamento.entity'; 
@@ -11,7 +12,8 @@ export class Usuario {
     @Column() 
     login: string // email 
 
-    @Column() 
+    @Column()
+    @Exclude() // Este campo será omitido nas respostas serializadas
     senha: string // deve usar hash 
 
     @Column() 

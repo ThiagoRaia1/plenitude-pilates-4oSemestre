@@ -1,6 +1,6 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -9,6 +9,7 @@ async function bootstrap() {
     whitelist: true, // remove campos que não estão no DTO
     forbidNonWhitelisted: true, // retorna erro se tiver campos que não estão no DTO
   }));
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
   app.enableCors();
   await app.listen(process.env.PORT || 3001);
   

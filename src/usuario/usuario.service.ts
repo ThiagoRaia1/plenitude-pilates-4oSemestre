@@ -27,13 +27,12 @@ export class UsuarioService {
     return this.usuarioRepository.findOneBy({ login });
   }
 
-
-  async findOne(id: number) {
+  async findOne(id: number): Promise<Usuario> {
     const usuario = await this.usuarioRepository.findOneBy({ id });
     if (!usuario) {
       throw new NotFoundException('Usuário não encontrado');
     }
-    return this.usuarioRepository.find({where: {id}});
+    return usuario;
   }
 
   async update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
