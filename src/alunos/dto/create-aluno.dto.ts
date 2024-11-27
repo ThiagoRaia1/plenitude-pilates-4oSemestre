@@ -18,7 +18,7 @@ export class CreateAlunoDto {
     @IsNotEmpty({ message: 'Telefone é obrigatório' })
     telefone: string
 
-    @IsNotEmpty({ message: 'Status é obrigatória' })
+    @IsNotEmpty({ message: 'Status é obrigatório' })
     status: string
 
     @IsNotEmpty({ message: 'O usuário que realizou a ultima alteração é obrigatório' })

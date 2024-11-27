@@ -46,6 +46,7 @@ export class AlunosService {
     if (!aluno) {
       throw new NotFoundException('Aluno não encontrada');
     }
+    updateAlunoDto.dataUltimaAlteracao = new Date(updateAlunoDto.dataUltimaAlteracao)
     this.alunoRepository.merge(aluno, updateAlunoDto);
     return this.alunoRepository.save(aluno);
   }

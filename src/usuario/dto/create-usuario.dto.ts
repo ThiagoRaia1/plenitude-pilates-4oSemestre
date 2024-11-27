@@ -1,4 +1,3 @@
-import { Instrutor } from "src/instrutor/entities/instrutor.entity"
 import { IsEmail, IsNotEmpty, IsStrongPassword } from 'class-validator';
 
 export class CreateUsuarioDto {
@@ -20,6 +19,4 @@ export class CreateUsuarioDto {
 
     @IsNotEmpty({ message: 'Nível de acesso é obrigatório' })
     nivelDeAcesso: number
-
-    instrutor: Instrutor // teste
 }
