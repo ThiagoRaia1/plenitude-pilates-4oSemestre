@@ -18,8 +18,21 @@ export class AlunoaulaService {
     return this.alunoAulaRepository.save(alunoAula)
   }
 
-  findAll() {
-    return this.alunoAulaRepository.find();
+  async findAll() {
+    return this.alunoAulaRepository
+      .createQueryBuilder('alunoAula')
+      .leftJoinAndSelect('alunoAula.aluno', 'aluno') // Faz o join com a tabela Aluno
+      .leftJoinAndSelect('alunoAula.aula', 'aula')   // Faz o join com a tabela Aula
+      .getMany();
+  }
+
+  async findByAulaId(aulaId: number) {
+    return this.alunoAulaRepository
+      .createQueryBuilder('alunoAula')
+      .leftJoinAndSelect('alunoAula.aluno', 'aluno')  // Faz join com a tabela Aluno
+      .leftJoinAndSelect('alunoAula.aula', 'aula')    // Faz join com a tabela Aula
+      .where('alunoAula.aula = :aulaId', { aulaId })  // Filtra pela aulaId específica
+      .getMany();  // Retorna todos os registros que correspondem
   }
 
   async findOne(id: number) {

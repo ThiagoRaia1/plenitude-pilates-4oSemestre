@@ -5,7 +5,7 @@ import { UpdateAlunoDto } from './dto/update-aluno.dto';
 
 @Controller('alunos')
 export class AlunosController {
-  constructor(private readonly alunosService: AlunosService) {}
+  constructor(private readonly alunosService: AlunosService) { }
 
   @Post()
   create(@Body() createAlunoDto: CreateAlunoDto) {
@@ -17,9 +17,15 @@ export class AlunosController {
     return this.alunosService.findAll();
   }
 
-  @Get(':cpf')
+  @Get('cpf/:cpf')
   findOne(@Param('cpf') cpf: string) {
     return this.alunosService.findOne(cpf);
+  }
+
+  // Rota para encontrar aluno por ID
+  @Get('id/:id')
+  findOneById(@Param('id') id: string) {
+    return this.alunosService.findOneById(+id);
   }
 
   @Patch(':cpf')

@@ -18,6 +18,11 @@ export class AlunoaulaController {
   }
 
   @Get(':id')
+  findByAulaId(@Param('id') id: string) {
+    return this.alunoaulaService.findByAulaId(+id);
+  }
+
+  @Get(':id')
   findOne(@Param('id') id: string) {
     return this.alunoaulaService.findOne(+id);
   }

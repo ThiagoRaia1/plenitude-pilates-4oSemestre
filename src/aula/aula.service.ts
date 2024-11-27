@@ -20,6 +20,7 @@ export class AulaService {
   }
 
   findAll() {
+    console.log("Aulas encontradas")
     return this.aulaRepository.find();
   }
 

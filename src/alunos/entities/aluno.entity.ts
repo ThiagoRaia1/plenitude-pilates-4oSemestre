@@ -1,6 +1,7 @@
 import { Aula } from 'src/aula/entities/aula.entity'; 
-import { Usuario } from 'src/usuario/entities/usuario.entity'; 
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, ManyToMany } from 'typeorm'; 
+import { Usuario } from 'src/usuario/entities/usuario.entity';
+import { Alunoaula } from 'src/alunoaula/entities/alunoaula.entity'; 
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, ManyToMany, OneToMany } from 'typeorm'; 
 
 @Entity()
 export class Aluno {
@@ -51,5 +52,8 @@ export class Aluno {
 
     @ManyToMany(() => Aula) 
     @JoinColumn() 
-    aulas: Aula[] 
+    aulas: Aula[]
+    
+    @OneToMany(() => Alunoaula, (alunoAula) => alunoAula.aluno)
+    alunoAulas: Alunoaula[];
 }
