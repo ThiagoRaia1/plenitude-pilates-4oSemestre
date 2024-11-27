@@ -14,8 +14,8 @@ export class PagamentoService {
   ) {}
 
   create(createPagamentoDto: CreatePagamentoDto) {
-    const pagamento = this.pagamentoRepository.create(createPagamentoDto)
-    return this.pagamentoRepository.save(pagamento)
+    // Criando diretamente o pagamento e salvando no banco de dados
+    return this.pagamentoRepository.save(createPagamentoDto); 
   }
 
   findAll() {
@@ -27,7 +27,7 @@ export class PagamentoService {
     if (!pagamento) {
       throw new NotFoundException('Pagamento não encontrado');
     }
-    return this.pagamentoRepository.find({where: {id}});
+    return pagamento;  // Retorna o pagamento diretamente
   }
 
   async update(id: number, updatePagamentoDto: UpdatePagamentoDto) {
@@ -42,8 +42,9 @@ export class PagamentoService {
   async remove(id: number) {
     const pagamento = await this.pagamentoRepository.findOneBy({ id });
     if (!pagamento) {
-      throw new NotFoundException('Usuário não encontrado');
+      throw new NotFoundException('Pagamento não encontrado');
     }
     return this.pagamentoRepository.remove(pagamento);
   }
 }
+

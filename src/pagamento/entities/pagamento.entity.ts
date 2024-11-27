@@ -1,26 +1,38 @@
 import { Usuario } from 'src/usuario/entities/usuario.entity'; 
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'; 
 
-@Entity() 
-export class Pagamento { 
-    @PrimaryGeneratedColumn() 
-    id: number 
+import { CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
-    @Column() 
-    ultimaAlteracao: string 
+@Entity('pagamentos')
+export class Pagamento {
+  @PrimaryGeneratedColumn() // O id será auto-incrementado automaticamente
+  id: number;
 
-    @Column() 
-    dataUltimaDeclaracao: Date 
+  @Column()
+  cliente: string;
 
-    @Column() 
-    status: string 
+  @Column()
+  formaDePagamento: string;
 
-    @Column() 
-    formaDePagamento: string 
+  @Column({ default: 'Aprovado' })
+  status: string;
 
-    @Column() 
-    data: Date 
+  @Column('decimal', { precision: 10, scale: 2 }) // Para valores monetários, utilize decimal
+  valorPago: number;
 
-    @ManyToOne(() => Usuario, (user) => user.pagamentos) 
-    usuario: Usuario // teste
+  @Column()
+  data: Date;
+
+  @CreateDateColumn()
+  dataUltimaDeclaracao: Date; // Data da última modificação (data de criação)
+
+  @Column()
+  ultimaAlteracao: string; // Nome do usuário que fez a última alteração (por exemplo, "usuario_logado")
+
+  @UpdateDateColumn()
+  ultimaAlteracaoData: Date; // Data e hora da última alteração (automático)
+
+  @ManyToOne(() => Usuario, (user) => user.pagamentos) 
+  usuario: Usuario // teste
+
 }
