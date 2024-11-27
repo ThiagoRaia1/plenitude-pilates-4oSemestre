@@ -1,6 +1,8 @@
 import { IsNotEmpty } from "class-validator"
 
 export class CreatePagamentoDto {
+
+    
     @IsNotEmpty({ message: 'O usuário que fez a ultima alteração é obrigatório' })
     ultimaAlteracao: string
 
