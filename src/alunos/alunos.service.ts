@@ -31,10 +31,8 @@ export class AlunosService {
   }
 
   async findOneById(id: number) {
-    console.log("1")
     const aluno = await this.alunoRepository.findOneBy({ id }); // Busca apenas um registro
     if (!aluno) {
-      console.log("2")
       throw new NotFoundException('Aluno não encontrado');
     }
     console.log(aluno)

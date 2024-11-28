@@ -7,7 +7,6 @@ import { AlunosModule } from './alunos/alunos.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { AulaModule } from './aula/aula.module';
 import { InstrutorModule } from './instrutor/instrutor.module';
-import { PerfildeAcessoModule } from './perfilde-acesso/perfilde-acesso.module';
 import { PagamentoModule } from './pagamento/pagamento.module';
 import { AlunoaulaModule } from './alunoaula/alunoaula.module';
 import { AuthModule } from './auth/auth.module';
@@ -20,8 +19,7 @@ import { ConfigModule } from '@nestjs/config';
     AlunosModule, 
     UsuarioModule, 
     AulaModule, 
-    InstrutorModule, 
-    PerfildeAcessoModule, 
+    InstrutorModule,
     PagamentoModule, 
     AlunoaulaModule, 
     AuthModule
